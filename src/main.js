@@ -17,6 +17,11 @@ const config = {
         mode: Phaser.Scale.RESIZE,
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
+    render: {
+        antialias: true,
+        pixelArt: false,
+        roundPixels: false
+    },
     scene: SceneInicial,
     physics: {
         default: 'arcade',

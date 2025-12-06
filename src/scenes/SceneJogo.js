@@ -470,25 +470,28 @@ export class SceneJogo extends Phaser.Scene {
         const letterCircleInner = this.add.circle(-width/2 + 45, -2, letterCircleSize/2 - 8, 0x3B82F6, 0.4);
         letterCircleInner.setDepth(4);
         
-        // Letra estilizada com sombra e destaque
+        // Letra estilizada com alta qualidade
         const letterText = this.add.text(-width/2 + 45, 0, letter, {
-            fontSize: '32px',
-            fontFamily: 'Inter',
+            fontSize: '36px',
+            fontFamily: 'Inter, Arial, sans-serif',
             fontWeight: '900',
             color: '#FFFFFF',
             stroke: '#0EA5E9',
-            strokeThickness: 3,
+            strokeThickness: 2,
+            resolution: 2, // Aumentar resolução para melhor qualidade
+            antialias: true,
             shadow: {
                 offsetX: 0,
-                offsetY: 2,
+                offsetY: 1,
                 color: '#000000',
-                blur: 4,
+                blur: 3,
                 stroke: true,
                 fill: true
             }
         });
         letterText.setOrigin(0.5);
         letterText.setDepth(5);
+        letterText.setScale(1); // Garantir escala 1:1
         
         // Texto da alternativa (sem a letra, já que está no círculo)
         const alternativeText = this.add.text(-width/2 + 100, 0, text, {
