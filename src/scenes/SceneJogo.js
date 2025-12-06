@@ -460,10 +460,6 @@ export class SceneJogo extends Phaser.Scene {
         letterCircle.setStrokeStyle(3, 0x06B6D4);
         letterCircle.setDepth(2);
         
-        // Brilho no círculo
-        const letterGlow = this.add.circle(-width/2 + 45, 0, letterCircleSize/2 - 5, 0x3B82F6, 0.3);
-        letterGlow.setDepth(3);
-        
         // Letra estilizada
         const letterText = this.add.text(-width/2 + 45, 0, letter, {
             fontSize: '28px',
@@ -474,7 +470,7 @@ export class SceneJogo extends Phaser.Scene {
             strokeThickness: 2
         });
         letterText.setOrigin(0.5);
-        letterText.setDepth(4);
+        letterText.setDepth(3);
         
         // Texto da alternativa (sem a letra, já que está no círculo)
         const alternativeText = this.add.text(-width/2 + 100, 0, text, {
@@ -488,7 +484,7 @@ export class SceneJogo extends Phaser.Scene {
         alternativeText.setOrigin(0, 0.5);
         alternativeText.setDepth(2);
         
-        buttonContainer.add([shadow, bg, letterGlow, letterCircle, letterText, alternativeText]);
+        buttonContainer.add([shadow, bg, letterCircle, letterText, alternativeText]);
         
         // Interações
         bg.on('pointerover', () => {
@@ -545,8 +541,7 @@ export class SceneJogo extends Phaser.Scene {
             letterCircle: letterCircle,
             letterText: letterText,
             alternativeText: alternativeText,
-            shadow: shadow,
-            letterGlow: letterGlow
+            shadow: shadow
         };
         
         this.botoesAlternativas.push(buttonData);
