@@ -27,7 +27,10 @@ export class Button {
         // Container do botão
         this.container = this.scene.add.container(this.x, this.y);
         
-        // Background
+        // Sombra do botão
+        const shadow = this.scene.add.rectangle(0, 2, this.style.width, this.style.height, 0x000000, 0.2);
+        
+        // Background com bordas arredondadas (simulado com círculos)
         this.bg = this.scene.add.rectangle(
             0, 0,
             this.style.width,
@@ -36,6 +39,13 @@ export class Button {
         );
         this.bg.setStrokeStyle(2, 0xFFFFFF, 0.3);
         this.bg.setInteractive({ useHandCursor: true });
+        
+        // Círculos nas pontas para simular bordas arredondadas
+        const cornerRadius = 15;
+        const leftCircle = this.scene.add.circle(-this.style.width/2 + cornerRadius, 0, cornerRadius, this.style.backgroundColor);
+        const rightCircle = this.scene.add.circle(this.style.width/2 - cornerRadius, 0, cornerRadius, this.style.backgroundColor);
+        leftCircle.setStrokeStyle(2, 0xFFFFFF, 0.3);
+        rightCircle.setStrokeStyle(2, 0xFFFFFF, 0.3);
         
         // Texto
         this.label = this.scene.add.text(0, 0, this.text, {
@@ -46,15 +56,20 @@ export class Button {
         });
         this.label.setOrigin(0.5);
         
-        this.container.add([this.bg, this.label]);
+        this.container.add([shadow, this.bg, leftCircle, rightCircle, this.label]);
+        
+        // Armazenar círculos para animações
+        this.leftCircle = leftCircle;
+        this.rightCircle = rightCircle;
         
         // Interações
         this.bg.on('pointerover', () => {
             this.scene.tweens.add({
-                targets: this.bg,
+                targets: [this.bg, this.leftCircle, this.rightCircle],
                 scaleX: 1.05,
                 scaleY: 1.05,
                 tint: this.style.hoverColor,
+                fillColor: this.style.hoverColor,
                 duration: 200,
                 ease: 'Power2'
             });
@@ -62,10 +77,11 @@ export class Button {
         
         this.bg.on('pointerout', () => {
             this.scene.tweens.add({
-                targets: this.bg,
+                targets: [this.bg, this.leftCircle, this.rightCircle],
                 scaleX: 1,
                 scaleY: 1,
                 tint: this.style.backgroundColor,
+                fillColor: this.style.backgroundColor,
                 duration: 200,
                 ease: 'Power2'
             });

@@ -164,11 +164,42 @@ export class SceneJogo extends Phaser.Scene {
     carregarPergunta() {
         const { width, height } = this.cameras.main;
         
-        // Limpar pergunta anterior
+        // Animação de saída da pergunta anterior
         if (this.perguntaContainer) {
-            this.perguntaContainer.destroy();
+            this.tweens.add({
+                targets: this.perguntaContainer,
+                alpha: 0,
+                x: this.perguntaContainer.x - 50,
+                scaleX: 0.9,
+                scaleY: 0.9,
+                duration: 300,
+                ease: 'Power2',
+                onComplete: () => {
+                    this.perguntaContainer.destroy();
+                    this.loadNewQuestion(width, height);
+                }
+            });
+            
+            // Animar botões saindo
+            this.botoesAlternativas.forEach((btn, index) => {
+                if (btn && btn.container) {
+                    this.tweens.add({
+                        targets: btn.container,
+                        alpha: 0,
+                        y: btn.container.y + 30,
+                        duration: 300,
+                        delay: index * 50,
+                        ease: 'Power2'
+                    });
+                }
+            });
+        } else {
+            // Primeira pergunta - carregar direto
+            this.loadNewQuestion(width, height);
         }
-        
+    }
+    
+    loadNewQuestion(width, height) {
         this.botoesAlternativas = [];
         this.feedbackAtivo = false;
         
@@ -180,8 +211,9 @@ export class SceneJogo extends Phaser.Scene {
             return;
         }
         
-        // Container da pergunta
-        this.perguntaContainer = this.add.container(width / 2, height / 2);
+        // Container da pergunta (começa fora da tela)
+        this.perguntaContainer = this.add.container(width / 2 + 50, height / 2);
+        this.perguntaContainer.setAlpha(0);
         
         // Card da pergunta com bordas mais arredondadas (simulado com sombra)
         const cardShadow = this.add.rectangle(0, -98, width * 0.8, 200, 0x000000, 0.3);
@@ -210,21 +242,37 @@ export class SceneJogo extends Phaser.Scene {
             const y = startY + (index * spacing);
             const letter = String.fromCharCode(65 + index); // A, B, C, D
             
-            // Criar botão customizado com letra destacada
-            this.createAlternativeButton(width / 2, height / 2 + y, letter, alternativa, index, width * 0.75);
+            // Criar botão customizado com letra destacada (começa invisível)
+            this.createAlternativeButton(width / 2, height / 2 + y + 30, letter, alternativa, index, width * 0.75);
         });
         
         // Atualizar HUD
         this.atualizarHUD();
         
-        // Animação de entrada
-        this.perguntaContainer.setAlpha(0);
+        // Animação de entrada suave
         this.tweens.add({
             targets: this.perguntaContainer,
             alpha: 1,
-            y: this.perguntaContainer.y - 20,
-            duration: 400,
-            ease: 'Power2'
+            x: width / 2,
+            scaleX: 1,
+            scaleY: 1,
+            duration: 500,
+            ease: 'Power3'
+        });
+        
+        // Animar botões entrando sequencialmente
+        this.botoesAlternativas.forEach((btn, index) => {
+            if (btn && btn.container) {
+                btn.container.setAlpha(0);
+                this.tweens.add({
+                    targets: btn.container,
+                    alpha: 1,
+                    y: height / 2 + startY + (index * spacing),
+                    duration: 400,
+                    delay: 200 + (index * 100),
+                    ease: 'Back.easeOut'
+                });
+            }
         });
     }
     
@@ -415,11 +463,18 @@ export class SceneJogo extends Phaser.Scene {
         const shadow = this.add.rectangle(0, 2, width, 70, 0x000000, 0.2);
         shadow.setDepth(0);
         
-        // Background do botão com bordas mais arredondadas (simulado)
+        // Background do botão com bordas arredondadas (usando círculos nas pontas)
         const bg = this.add.rectangle(0, 0, width, 70, 0x1E293B, 0.95);
         bg.setStrokeStyle(2, 0x374151);
         bg.setInteractive({ useHandCursor: true });
         bg.setDepth(1);
+        
+        // Círculos nas pontas para simular bordas arredondadas
+        const cornerRadius = 12;
+        const leftCircle = this.add.circle(-width/2 + cornerRadius, 0, cornerRadius, 0x1E293B, 0.95);
+        const rightCircle = this.add.circle(width/2 - cornerRadius, 0, cornerRadius, 0x1E293B, 0.95);
+        leftCircle.setDepth(1);
+        rightCircle.setDepth(1);
         
         // Círculo destacado para a letra
         const letterCircleSize = 50;
@@ -455,7 +510,7 @@ export class SceneJogo extends Phaser.Scene {
         alternativeText.setOrigin(0, 0.5);
         alternativeText.setDepth(2);
         
-        buttonContainer.add([shadow, bg, letterGlow, letterCircle, letterText, alternativeText]);
+        buttonContainer.add([shadow, bg, leftCircle, rightCircle, letterGlow, letterCircle, letterText, alternativeText]);
         
         // Interações
         bg.on('pointerover', () => {
