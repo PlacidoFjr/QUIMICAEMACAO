@@ -489,33 +489,23 @@ export class SceneJogo extends Phaser.Scene {
         // Interações
         bg.on('pointerover', () => {
             this.tweens.add({
-                targets: [bg, letterCircle],
+                targets: bg,
                 scaleX: 1.02,
                 scaleY: 1.02,
                 tint: 0x3B82F6,
                 duration: 200,
                 ease: 'Power2'
             });
-            this.tweens.add({
-                targets: letterCircle,
-                fillColor: 0x3B82F6,
-                duration: 200
-            });
         });
         
         bg.on('pointerout', () => {
             this.tweens.add({
-                targets: [bg, letterCircle],
+                targets: bg,
                 scaleX: 1,
                 scaleY: 1,
                 tint: 0x1E293B,
                 duration: 200,
                 ease: 'Power2'
-            });
-            this.tweens.add({
-                targets: letterCircle,
-                fillColor: 0x2563EB,
-                duration: 200
             });
         });
         
