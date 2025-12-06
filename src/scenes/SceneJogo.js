@@ -118,9 +118,46 @@ export class SceneJogo extends Phaser.Scene {
         });
         this.textProgresso.setOrigin(0.5);
         
-        // Barra de progresso
-        this.progressBarBg = this.add.rectangle(width - 150, 30, 200, 8, 0x374151);
-        this.progressBar = this.add.rectangle(width - 150, 30, 0, 8, 0x06B6D4);
+        // Barra de progresso melhorada
+        const progressBarX = width - 180;
+        const progressBarY = 30;
+        const progressBarWidth = 250;
+        const progressBarHeight = 12;
+        
+        // Sombra da barra de fundo
+        this.progressBarShadow = this.add.rectangle(progressBarX, progressBarY + 2, progressBarWidth, progressBarHeight, 0x000000, 0.3);
+        this.progressBarShadow.setDepth(0);
+        
+        // Fundo da barra com borda
+        this.progressBarBg = this.add.rectangle(progressBarX, progressBarY, progressBarWidth, progressBarHeight, 0x1E293B, 0.9);
+        this.progressBarBg.setStrokeStyle(2, 0x374151);
+        this.progressBarBg.setDepth(1);
+        
+        // Barra de progresso com gradiente (simulado com múltiplas camadas)
+        // Camada de brilho (gradiente superior)
+        this.progressBarGlow = this.add.rectangle(progressBarX - progressBarWidth/2, progressBarY, 0, progressBarHeight, 0x06B6D4, 0.6);
+        this.progressBarGlow.setOrigin(0, 0.5);
+        this.progressBarGlow.setDepth(3);
+        
+        // Barra principal
+        this.progressBar = this.add.rectangle(progressBarX - progressBarWidth/2, progressBarY, 0, progressBarHeight - 4, 0x06B6D4);
+        this.progressBar.setOrigin(0, 0.5);
+        this.progressBar.setDepth(2);
+        
+        // Barra de destaque (efeito de brilho interno)
+        this.progressBarHighlight = this.add.rectangle(progressBarX - progressBarWidth/2, progressBarY - 2, 0, 3, 0x67E8F9, 0.8);
+        this.progressBarHighlight.setOrigin(0, 0.5);
+        this.progressBarHighlight.setDepth(4);
+        
+        // Texto de porcentagem
+        this.progressText = this.add.text(progressBarX + progressBarWidth/2 + 10, progressBarY, '0%', {
+            fontSize: '14px',
+            fontFamily: 'Inter',
+            fontWeight: '600',
+            color: '#9CA3AF'
+        });
+        this.progressText.setOrigin(0, 0.5);
+        this.progressText.setDepth(5);
     }
     
     
@@ -210,9 +247,70 @@ export class SceneJogo extends Phaser.Scene {
         this.textProgresso.setText(`Pergunta ${atual}/${total}`);
         
         const progresso = atual / total;
+        const progressBarWidth = 250;
+        const progressBarHeight = 12;
+        const newWidth = progresso * progressBarWidth;
+        const porcentagem = Math.round(progresso * 100);
+        
+        // Atualizar porcentagem
+        this.progressText.setText(`${porcentagem}%`);
+        
+        // Animação suave da barra principal
         this.tweens.add({
             targets: this.progressBar,
-            width: progresso * 200,
+            width: newWidth,
+            duration: 500,
+            ease: 'Power2'
+        });
+        
+        // Animação da camada de brilho (ligeiramente mais rápida para efeito)
+        this.tweens.add({
+            targets: this.progressBarGlow,
+            width: newWidth,
+            duration: 400,
+            ease: 'Power2'
+        });
+        
+        // Animação do destaque interno
+        this.tweens.add({
+            targets: this.progressBarHighlight,
+            width: newWidth * 0.8, // 80% da largura para efeito de gradiente
+            duration: 450,
+            ease: 'Power2'
+        });
+        
+        // Efeito de pulso quando completa uma pergunta
+        if (progresso > 0) {
+            this.tweens.add({
+                targets: [this.progressBar, this.progressBarGlow],
+                scaleY: 1.2,
+                duration: 150,
+                yoyo: true,
+                ease: 'Power2'
+            });
+        }
+        
+        // Mudança de cor baseada no progresso
+        let barColor = 0x06B6D4; // Azul ciano padrão
+        let glowColor = 0x06B6D4;
+        
+        if (progresso >= 0.8) {
+            barColor = 0x10B981; // Verde quando quase completo
+            glowColor = 0x34D399;
+        } else if (progresso >= 0.5) {
+            barColor = 0x3B82F6; // Azul médio
+            glowColor = 0x60A5FA;
+        }
+        
+        this.tweens.add({
+            targets: this.progressBar,
+            fillColor: barColor,
+            duration: 300
+        });
+        
+        this.tweens.add({
+            targets: this.progressBarGlow,
+            fillColor: glowColor,
             duration: 300
         });
     }
