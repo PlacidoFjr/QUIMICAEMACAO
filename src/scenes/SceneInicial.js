@@ -9,10 +9,15 @@ import { GameData } from '../utils/GameData.js';
 export class SceneInicial extends Phaser.Scene {
     constructor() {
         super({ key: 'SceneInicial' });
+        this.popupElements = null;
+        this.gameData = new GameData();
     }
     
     create() {
         const { width, height } = this.cameras.main;
+        
+        // Limpar qualquer input órfão que possa ter ficado
+        this.cleanupOrphanInputs();
         
         // Ocultar renderer 3D
         if (window.threeRenderer) {
@@ -117,6 +122,12 @@ export class SceneInicial extends Phaser.Scene {
             }
         );
         
+        // Mostrar mensagem de boas-vindas se já tiver nome salvo
+        const nomeSalvo = this.gameData.getNomeJogador();
+        if (nomeSalvo && nomeSalvo !== 'Jogador') {
+            this.showWelcomeMessage(nomeSalvo, false);
+        }
+        
         // Efeito de entrada
         this.cameras.main.fadeIn(500);
         
@@ -126,12 +137,23 @@ export class SceneInicial extends Phaser.Scene {
         });
     }
     
+    cleanupOrphanInputs() {
+        // Remover qualquer input órfão que possa ter ficado
+        const orphanInput = document.getElementById('nome-input-popup');
+        if (orphanInput && orphanInput.parentNode) {
+            orphanInput.removeEventListener('keypress', () => {});
+            document.body.removeChild(orphanInput);
+        }
+    }
+    
     async showNomePopup() {
         const { width, height } = this.cameras.main;
         
+        // Limpar inputs órfãos antes de criar novo
+        this.cleanupOrphanInputs();
+        
         // Carregar nome salvo se existir
-        const gameData = new GameData();
-        const nomeSalvo = gameData.loadNomeJogador();
+        const nomeSalvo = this.gameData.getNomeJogador();
         
         // Desabilitar eventos do canvas temporariamente
         const gameCanvas = document.querySelector('canvas');
@@ -216,6 +238,7 @@ export class SceneInicial extends Phaser.Scene {
         inputElement.style.zIndex = '99999';
         inputElement.style.pointerEvents = 'auto';
         inputElement.style.cursor = 'text';
+        inputElement.style.display = 'block';
         inputElement.maxLength = 20;
         document.body.appendChild(inputElement);
         
@@ -258,14 +281,13 @@ export class SceneInicial extends Phaser.Scene {
             'CONFIRMAR',
             () => {
                 const nomeFinal = inputElement.value.trim() || 'Jogador';
-                const gameData = new GameData();
-                gameData.saveNomeJogador(nomeFinal);
+                this.gameData.saveNomeJogador(nomeFinal);
                 
                 // Limpar popup completamente
                 this.cleanupPopup();
                 
                 // Mostrar mensagem de boas-vindas
-                this.showWelcomeMessage(nomeFinal);
+                this.showWelcomeMessage(nomeFinal, true);
             },
             {
                 backgroundColor: 0x2563EB,
@@ -282,8 +304,7 @@ export class SceneInicial extends Phaser.Scene {
         const onEnterKey = (e) => {
             if (e.key === 'Enter') {
                 const nomeFinal = inputElement.value.trim() || 'Jogador';
-                const gameData = new GameData();
-                gameData.saveNomeJogador(nomeFinal);
+                this.gameData.saveNomeJogador(nomeFinal);
                 
                 // Remover listener antes de limpar
                 inputElement.removeEventListener('keypress', onEnterKey);
@@ -292,7 +313,7 @@ export class SceneInicial extends Phaser.Scene {
                 this.cleanupPopup();
                 
                 // Mostrar mensagem de boas-vindas
-                this.showWelcomeMessage(nomeFinal);
+                this.showWelcomeMessage(nomeFinal, true);
             }
         };
         inputElement.addEventListener('keypress', onEnterKey);
@@ -308,13 +329,19 @@ export class SceneInicial extends Phaser.Scene {
         
         // Remover todos os elementos do popup
         if (this.popupElements) {
-            // Remover input HTML
+            // Remover input HTML primeiro
             if (this.popupElements.inputElement) {
-                if (this.popupElements.onEnterKey) {
-                    this.popupElements.inputElement.removeEventListener('keypress', this.popupElements.onEnterKey);
-                }
-                if (this.popupElements.inputElement.parentNode) {
-                    document.body.removeChild(this.popupElements.inputElement);
+                try {
+                    if (this.popupElements.onEnterKey) {
+                        this.popupElements.inputElement.removeEventListener('keypress', this.popupElements.onEnterKey);
+                    }
+                    // Esconder o input antes de remover
+                    this.popupElements.inputElement.style.display = 'none';
+                    if (this.popupElements.inputElement.parentNode) {
+                        document.body.removeChild(this.popupElements.inputElement);
+                    }
+                } catch (e) {
+                    console.warn('Erro ao remover input:', e);
                 }
             }
             
@@ -325,14 +352,30 @@ export class SceneInicial extends Phaser.Scene {
             if (this.popupElements.subtitulo) this.popupElements.subtitulo.destroy();
             if (this.popupElements.inputBg) this.popupElements.inputBg.destroy();
             if (this.popupElements.inputText) this.popupElements.inputText.destroy();
-            if (this.popupElements.btnConfirmar) this.popupElements.btnConfirmar.destroy();
+            if (this.popupElements.btnConfirmar) {
+                if (this.popupElements.btnConfirmar.container) {
+                    this.popupElements.btnConfirmar.container.destroy();
+                }
+                if (this.popupElements.btnConfirmar.destroy) {
+                    this.popupElements.btnConfirmar.destroy();
+                }
+            }
             
             this.popupElements = null;
         }
+        
+        // Limpar inputs órfãos também
+        this.cleanupOrphanInputs();
     }
     
-    showWelcomeMessage(nome) {
+    showWelcomeMessage(nome, animate = true) {
         const { width, height } = this.cameras.main;
+        
+        // Remover mensagem anterior se existir
+        const existingWelcome = this.children.getByName('welcomeMessage');
+        if (existingWelcome) {
+            existingWelcome.destroy();
+        }
         
         const welcomeText = this.add.text(width / 2, height * 0.15, `Olá, ${nome}!`, {
             fontSize: '24px',
@@ -341,24 +384,29 @@ export class SceneInicial extends Phaser.Scene {
             color: '#06B6D4'
         });
         welcomeText.setOrigin(0.5);
-        welcomeText.setAlpha(0);
+        welcomeText.setName('welcomeMessage');
         
-        this.tweens.add({
-            targets: welcomeText,
-            alpha: 1,
-            y: welcomeText.y - 20,
-            duration: 500,
-            ease: 'Power2'
-        });
-        
-        // Fazer desaparecer após 3 segundos
-        this.tweens.add({
-            targets: welcomeText,
-            alpha: 0,
-            delay: 3000,
-            duration: 500,
-            onComplete: () => welcomeText.destroy()
-        });
+        if (animate) {
+            welcomeText.setAlpha(0);
+            this.tweens.add({
+                targets: welcomeText,
+                alpha: 1,
+                y: welcomeText.y - 20,
+                duration: 500,
+                ease: 'Power2'
+            });
+            
+            // Fazer desaparecer após 3 segundos
+            this.tweens.add({
+                targets: welcomeText,
+                alpha: 0,
+                delay: 3000,
+                duration: 500,
+                onComplete: () => welcomeText.destroy()
+            });
+        } else {
+            welcomeText.setAlpha(1);
+        }
     }
     
     createParticles() {
@@ -394,6 +442,8 @@ export class SceneInicial extends Phaser.Scene {
     
     shutdown() {
         // Limpeza ao sair da cena
+        this.cleanupPopup();
+        this.cleanupOrphanInputs();
     }
 }
 
