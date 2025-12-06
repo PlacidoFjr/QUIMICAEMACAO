@@ -108,16 +108,28 @@ export class GameData {
     
     loadNomeJogador() {
         const saved = localStorage.getItem('quimicaNomeJogador');
-        return saved || '';
+        if (saved && saved.trim() !== '') {
+            this.nomeJogador = saved;
+            return saved;
+        }
+        this.nomeJogador = '';
+        return '';
     }
     
     saveNomeJogador(nome) {
-        this.nomeJogador = nome;
-        localStorage.setItem('quimicaNomeJogador', nome);
+        const nomeFinal = nome.trim() || 'Jogador';
+        this.nomeJogador = nomeFinal;
+        localStorage.setItem('quimicaNomeJogador', nomeFinal);
     }
     
     getNomeJogador() {
-        return this.nomeJogador || 'Jogador';
+        // Sempre verificar localStorage primeiro para garantir persistência
+        const saved = localStorage.getItem('quimicaNomeJogador');
+        if (saved && saved.trim() !== '' && saved !== 'Jogador') {
+            this.nomeJogador = saved;
+            return saved;
+        }
+        return this.nomeJogador || '';
     }
     
     saveProgresso(nomeJogador, pontuacao, total, perguntasRespondidas) {

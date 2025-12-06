@@ -125,9 +125,15 @@ export class SceneInicial extends Phaser.Scene {
         // Efeito de entrada
         this.cameras.main.fadeIn(300);
         
-        // Sempre mostrar popup para permitir editar o nome (sem delay)
-        // A mensagem de boas-vindas só aparecerá após o popup ser fechado
-        this.showNomePopup();
+        // Verificar se já tem nome salvo
+        const nomeSalvo = this.gameData.getNomeJogador();
+        if (nomeSalvo && nomeSalvo !== 'Jogador' && nomeSalvo.trim() !== '') {
+            // Já tem nome salvo - mostrar mensagem de boas-vindas e não mostrar popup
+            this.showWelcomeMessage(nomeSalvo, false);
+        } else {
+            // Não tem nome salvo - mostrar popup
+            this.showNomePopup();
+        }
     }
     
     cleanupOrphanInputs() {
