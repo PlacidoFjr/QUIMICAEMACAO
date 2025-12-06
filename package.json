@@ -5,7 +5,7 @@
   "main": "index.html",
   "scripts": {
     "dev": "npx http-server . -p 8080 -c-1",
-    "build": "echo 'Build estático - arquivos prontos para deploy'",
+    "build": "node build.js",
     "start": "npm run dev"
   },
   "keywords": [
