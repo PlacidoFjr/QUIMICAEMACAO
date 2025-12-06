@@ -454,23 +454,41 @@ export class SceneJogo extends Phaser.Scene {
         bg.setInteractive({ useHandCursor: true });
         bg.setDepth(1);
         
-        // Círculo destacado para a letra
-        const letterCircleSize = 50;
-        const letterCircle = this.add.circle(-width/2 + 45, 0, letterCircleSize/2, 0x2563EB);
-        letterCircle.setStrokeStyle(3, 0x06B6D4);
-        letterCircle.setDepth(2);
+        // Círculo destacado para a letra com gradiente (simulado)
+        const letterCircleSize = 52;
         
-        // Letra estilizada
+        // Círculo de fundo (mais escuro)
+        const letterCircleBg = this.add.circle(-width/2 + 45, 0, letterCircleSize/2, 0x1E3A8A);
+        letterCircleBg.setDepth(2);
+        
+        // Círculo principal com gradiente (simulado com círculo menor)
+        const letterCircle = this.add.circle(-width/2 + 45, 0, letterCircleSize/2 - 2, 0x2563EB);
+        letterCircle.setStrokeStyle(2, 0x06B6D4);
+        letterCircle.setDepth(3);
+        
+        // Círculo interno para efeito de profundidade
+        const letterCircleInner = this.add.circle(-width/2 + 45, -2, letterCircleSize/2 - 8, 0x3B82F6, 0.4);
+        letterCircleInner.setDepth(4);
+        
+        // Letra estilizada com sombra e destaque
         const letterText = this.add.text(-width/2 + 45, 0, letter, {
-            fontSize: '28px',
+            fontSize: '32px',
             fontFamily: 'Inter',
-            fontWeight: '800',
+            fontWeight: '900',
             color: '#FFFFFF',
-            stroke: '#06B6D4',
-            strokeThickness: 2
+            stroke: '#0EA5E9',
+            strokeThickness: 3,
+            shadow: {
+                offsetX: 0,
+                offsetY: 2,
+                color: '#000000',
+                blur: 4,
+                stroke: true,
+                fill: true
+            }
         });
         letterText.setOrigin(0.5);
-        letterText.setDepth(3);
+        letterText.setDepth(5);
         
         // Texto da alternativa (sem a letra, já que está no círculo)
         const alternativeText = this.add.text(-width/2 + 100, 0, text, {
@@ -484,7 +502,7 @@ export class SceneJogo extends Phaser.Scene {
         alternativeText.setOrigin(0, 0.5);
         alternativeText.setDepth(2);
         
-        buttonContainer.add([shadow, bg, letterCircle, letterText, alternativeText]);
+        buttonContainer.add([shadow, bg, letterCircleBg, letterCircle, letterCircleInner, letterText, alternativeText]);
         
         // Interações
         bg.on('pointerover', () => {
@@ -528,7 +546,9 @@ export class SceneJogo extends Phaser.Scene {
         const buttonData = {
             container: buttonContainer,
             bg: bg,
+            letterCircleBg: letterCircleBg,
             letterCircle: letterCircle,
+            letterCircleInner: letterCircleInner,
             letterText: letterText,
             alternativeText: alternativeText,
             shadow: shadow
