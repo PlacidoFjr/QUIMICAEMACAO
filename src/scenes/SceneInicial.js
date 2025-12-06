@@ -122,16 +122,11 @@ export class SceneInicial extends Phaser.Scene {
             }
         );
         
-        // Mostrar mensagem de boas-vindas se já tiver nome salvo
-        const nomeSalvo = this.gameData.getNomeJogador();
-        if (nomeSalvo && nomeSalvo !== 'Jogador') {
-            this.showWelcomeMessage(nomeSalvo, false);
-        }
-        
         // Efeito de entrada
         this.cameras.main.fadeIn(500);
         
         // Sempre mostrar popup para permitir editar o nome
+        // A mensagem de boas-vindas só aparecerá após o popup ser fechado
         this.time.delayedCall(1000, () => {
             this.showNomePopup();
         });
