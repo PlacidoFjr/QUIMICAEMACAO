@@ -123,13 +123,11 @@ export class SceneInicial extends Phaser.Scene {
         );
         
         // Efeito de entrada
-        this.cameras.main.fadeIn(500);
+        this.cameras.main.fadeIn(300);
         
-        // Sempre mostrar popup para permitir editar o nome
+        // Sempre mostrar popup para permitir editar o nome (sem delay)
         // A mensagem de boas-vindas só aparecerá após o popup ser fechado
-        this.time.delayedCall(1000, () => {
-            this.showNomePopup();
-        });
+        this.showNomePopup();
     }
     
     cleanupOrphanInputs() {
