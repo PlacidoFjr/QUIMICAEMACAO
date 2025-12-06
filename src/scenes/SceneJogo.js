@@ -183,46 +183,35 @@ export class SceneJogo extends Phaser.Scene {
         // Container da pergunta
         this.perguntaContainer = this.add.container(width / 2, height / 2);
         
-        // Card da pergunta
-        const cardBg = this.add.rectangle(0, -100, width * 0.8, 200, 0x1E293B, 0.9);
-        cardBg.setStrokeStyle(2, 0x2563EB);
+        // Card da pergunta com bordas mais arredondadas (simulado com sombra)
+        const cardShadow = this.add.rectangle(0, -98, width * 0.8, 200, 0x000000, 0.3);
+        const cardBg = this.add.rectangle(0, -100, width * 0.8, 200, 0x1E293B, 0.95);
+        cardBg.setStrokeStyle(3, 0x2563EB);
         
         // Texto da pergunta
         const textoPergunta = this.add.text(0, -100, this.perguntaAtual.enunciado, {
-            fontSize: '24px',
+            fontSize: '26px',
             fontFamily: 'Inter',
-            fontWeight: '600',
+            fontWeight: '700',
             color: '#FFFFFF',
             wordWrap: { width: width * 0.75 },
-            align: 'center'
+            align: 'center',
+            lineSpacing: 8
         });
         textoPergunta.setOrigin(0.5);
         
-        this.perguntaContainer.add([cardBg, textoPergunta]);
+        this.perguntaContainer.add([cardShadow, cardBg, textoPergunta]);
         
-        // Alternativas
-        const startY = 50;
-        const spacing = 80;
+        // Alternativas com design melhorado
+        const startY = 80;
+        const spacing = 90;
         
         this.perguntaAtual.alternativas.forEach((alternativa, index) => {
             const y = startY + (index * spacing);
+            const letter = String.fromCharCode(65 + index); // A, B, C, D
             
-            const btn = new Button(
-                this,
-                width / 2,
-                height / 2 + y,
-                `${String.fromCharCode(65 + index)}. ${alternativa}`,
-                () => this.responderPergunta(index),
-                {
-                    backgroundColor: 0x1E3A8A,
-                    hoverColor: 0x2563EB,
-                    width: width * 0.7,
-                    height: 60,
-                    fontSize: '20px'
-                }
-            );
-            
-            this.botoesAlternativas.push(btn);
+            // Criar botão customizado com letra destacada
+            this.createAlternativeButton(width / 2, height / 2 + y, letter, alternativa, index, width * 0.75);
         });
         
         // Atualizar HUD
@@ -328,9 +317,15 @@ export class SceneJogo extends Phaser.Scene {
         if (resultado.correta) {
             // Correto - verde
             this.tweens.add({
-                targets: botaoClicado.bg,
+                targets: [botaoClicado.bg, botaoClicado.letterCircle],
                 tint: 0x10B981,
-                duration: 200
+                fillColor: 0x10B981,
+                duration: 300
+            });
+            this.tweens.add({
+                targets: botaoClicado.letterText,
+                tint: 0xFFFFFF,
+                duration: 300
             });
             
             // Efeito de partículas
@@ -338,16 +333,23 @@ export class SceneJogo extends Phaser.Scene {
         } else {
             // Errado - vermelho
             this.tweens.add({
-                targets: botaoClicado.bg,
+                targets: [botaoClicado.bg, botaoClicado.letterCircle],
                 tint: 0xEF4444,
-                duration: 200
+                fillColor: 0xEF4444,
+                duration: 300
             });
             
             // Destacar resposta correta
             this.tweens.add({
-                targets: botaoCorreto.bg,
+                targets: [botaoCorreto.bg, botaoCorreto.letterCircle],
                 tint: 0x10B981,
-                duration: 200
+                fillColor: 0x10B981,
+                duration: 300
+            });
+            this.tweens.add({
+                targets: botaoCorreto.letterText,
+                tint: 0xFFFFFF,
+                duration: 300
             });
         }
         
@@ -404,6 +406,117 @@ export class SceneJogo extends Phaser.Scene {
                 });
             }
         });
+    }
+    
+    createAlternativeButton(x, y, letter, text, index, width) {
+        const buttonContainer = this.add.container(x, y);
+        
+        // Sombra do botão
+        const shadow = this.add.rectangle(0, 2, width, 70, 0x000000, 0.2);
+        shadow.setDepth(0);
+        
+        // Background do botão com bordas mais arredondadas (simulado)
+        const bg = this.add.rectangle(0, 0, width, 70, 0x1E293B, 0.95);
+        bg.setStrokeStyle(2, 0x374151);
+        bg.setInteractive({ useHandCursor: true });
+        bg.setDepth(1);
+        
+        // Círculo destacado para a letra
+        const letterCircleSize = 50;
+        const letterCircle = this.add.circle(-width/2 + 45, 0, letterCircleSize/2, 0x2563EB);
+        letterCircle.setStrokeStyle(3, 0x06B6D4);
+        letterCircle.setDepth(2);
+        
+        // Brilho no círculo
+        const letterGlow = this.add.circle(-width/2 + 45, 0, letterCircleSize/2 - 5, 0x3B82F6, 0.3);
+        letterGlow.setDepth(3);
+        
+        // Letra estilizada
+        const letterText = this.add.text(-width/2 + 45, 0, letter, {
+            fontSize: '28px',
+            fontFamily: 'Inter',
+            fontWeight: '800',
+            color: '#FFFFFF',
+            stroke: '#06B6D4',
+            strokeThickness: 2
+        });
+        letterText.setOrigin(0.5);
+        letterText.setDepth(4);
+        
+        // Texto da alternativa (sem a letra, já que está no círculo)
+        const alternativeText = this.add.text(-width/2 + 100, 0, text, {
+            fontSize: '20px',
+            fontFamily: 'Inter',
+            fontWeight: '600',
+            color: '#FFFFFF',
+            wordWrap: { width: width - 150 },
+            align: 'left'
+        });
+        alternativeText.setOrigin(0, 0.5);
+        alternativeText.setDepth(2);
+        
+        buttonContainer.add([shadow, bg, letterGlow, letterCircle, letterText, alternativeText]);
+        
+        // Interações
+        bg.on('pointerover', () => {
+            this.tweens.add({
+                targets: [bg, letterCircle],
+                scaleX: 1.02,
+                scaleY: 1.02,
+                tint: 0x3B82F6,
+                duration: 200,
+                ease: 'Power2'
+            });
+            this.tweens.add({
+                targets: letterCircle,
+                fillColor: 0x3B82F6,
+                duration: 200
+            });
+        });
+        
+        bg.on('pointerout', () => {
+            this.tweens.add({
+                targets: [bg, letterCircle],
+                scaleX: 1,
+                scaleY: 1,
+                tint: 0x1E293B,
+                duration: 200,
+                ease: 'Power2'
+            });
+            this.tweens.add({
+                targets: letterCircle,
+                fillColor: 0x2563EB,
+                duration: 200
+            });
+        });
+        
+        bg.on('pointerdown', () => {
+            this.tweens.add({
+                targets: buttonContainer,
+                scaleX: 0.98,
+                scaleY: 0.98,
+                duration: 100,
+                yoyo: true,
+                ease: 'Power2'
+            });
+            
+            this.time.delayedCall(100, () => {
+                this.responderPergunta(index);
+            });
+        });
+        
+        // Armazenar referências para feedback visual
+        const buttonData = {
+            container: buttonContainer,
+            bg: bg,
+            letterCircle: letterCircle,
+            letterText: letterText,
+            alternativeText: alternativeText,
+            shadow: shadow,
+            letterGlow: letterGlow
+        };
+        
+        this.botoesAlternativas.push(buttonData);
     }
     
     createSuccessEffect(x, y) {
