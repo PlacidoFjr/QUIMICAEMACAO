@@ -1,0 +1,705 @@
+{
+  "perguntas": [
+    {
+      "id": 1,
+      "enunciado": "Qual é o símbolo químico do elemento Oxigênio?",
+      "alternativas": [
+        "Ox",
+        "O",
+        "Og",
+        "Oxg"
+      ],
+      "resposta": 1,
+      "explicacao": "O símbolo químico do Oxigênio é 'O', derivado do seu nome em latim 'Oxygenium'.",
+      "nivel": "basico",
+      "tag": "simbolos"
+    },
+    {
+      "id": 2,
+      "enunciado": "Quantos elétrons um átomo de Hidrogênio possui?",
+      "alternativas": [
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "resposta": 1,
+      "explicacao": "O átomo de Hidrogênio possui 1 elétron, sendo o elemento mais simples da tabela periódica.",
+      "nivel": "basico",
+      "tag": "estrutura_atomica"
+    },
+    {
+      "id": 3,
+      "enunciado": "Qual é a fórmula química da água?",
+      "alternativas": [
+        "H2O",
+        "HO2",
+        "H2O2",
+        "H3O"
+      ],
+      "resposta": 0,
+      "explicacao": "A fórmula química da água é H2O, representando dois átomos de Hidrogênio e um de Oxigênio.",
+      "nivel": "basico",
+      "tag": "compostos"
+    },
+    {
+      "id": 4,
+      "enunciado": "O que significa pH?",
+      "alternativas": [
+        "Potencial de Hidrogênio",
+        "Peso de Hidrogênio",
+        "Proporção de Hidrogênio",
+        "Pressão de Hidrogênio"
+      ],
+      "resposta": 0,
+      "explicacao": "pH significa Potencial de Hidrogênio, uma escala que mede a acidez ou basicidade de uma solução.",
+      "nivel": "intermediario",
+      "tag": "acidez_basicidade"
+    },
+    {
+      "id": 5,
+      "enunciado": "Qual é o número atômico do Carbono?",
+      "alternativas": [
+        "4",
+        "6",
+        "8",
+        "12"
+      ],
+      "resposta": 1,
+      "explicacao": "O número atômico do Carbono é 6, indicando que possui 6 prótons no núcleo.",
+      "nivel": "basico",
+      "tag": "tabela_periodica"
+    },
+    {
+      "id": 6,
+      "enunciado": "O que é uma ligação covalente?",
+      "alternativas": [
+        "Transferência de elétrons",
+        "Compartilhamento de elétrons",
+        "Atração entre íons",
+        "Força de Van der Waals"
+      ],
+      "resposta": 1,
+      "explicacao": "Uma ligação covalente ocorre quando dois átomos compartilham pares de elétrons para alcançar estabilidade.",
+      "nivel": "intermediario",
+      "tag": "ligacoes_quimicas"
+    },
+    {
+      "id": 7,
+      "enunciado": "Qual é a massa atômica aproximada do Hidrogênio?",
+      "alternativas": [
+        "1 u",
+        "2 u",
+        "3 u",
+        "4 u"
+      ],
+      "resposta": 0,
+      "explicacao": "A massa atômica do Hidrogênio é aproximadamente 1 unidade de massa atômica (u).",
+      "nivel": "basico",
+      "tag": "massa_atomica"
+    },
+    {
+      "id": 8,
+      "enunciado": "O que acontece em uma reação de oxidação?",
+      "alternativas": [
+        "Ganho de elétrons",
+        "Perda de elétrons",
+        "Ganho de prótons",
+        "Perda de nêutrons"
+      ],
+      "resposta": 1,
+      "explicacao": "Em uma reação de oxidação, um átomo ou íon perde elétrons, aumentando seu número de oxidação.",
+      "nivel": "avancado",
+      "tag": "reacoes_quimicas"
+    },
+    {
+      "id": 9,
+      "enunciado": "Qual é a fórmula química do dióxido de carbono?",
+      "alternativas": [
+        "CO",
+        "CO2",
+        "C2O",
+        "C2O2"
+      ],
+      "resposta": 1,
+      "explicacao": "O dióxido de carbono tem fórmula CO2, contendo um átomo de Carbono e dois de Oxigênio.",
+      "nivel": "basico",
+      "tag": "compostos"
+    },
+    {
+      "id": 10,
+      "enunciado": "O que é um catalisador?",
+      "alternativas": [
+        "Substância que acelera reações",
+        "Substância que impede reações",
+        "Produto de uma reação",
+        "Reagente consumido"
+      ],
+      "resposta": 0,
+      "explicacao": "Um catalisador é uma substância que acelera uma reação química sem ser consumida no processo.",
+      "nivel": "intermediario",
+      "tag": "catalise"
+    },
+    {
+      "id": 11,
+      "enunciado": "Qual é o símbolo químico do Sódio?",
+      "alternativas": [
+        "So",
+        "Na",
+        "Sd",
+        "S"
+      ],
+      "resposta": 1,
+      "explicacao": "O símbolo químico do Sódio é 'Na', derivado do seu nome em latim 'Natrium'.",
+      "nivel": "basico",
+      "tag": "simbolos"
+    },
+    {
+      "id": 12,
+      "enunciado": "Quantos elétrons um átomo neutro de Oxigênio possui?",
+      "alternativas": [
+        "6",
+        "8",
+        "10",
+        "16"
+      ],
+      "resposta": 1,
+      "explicacao": "Um átomo neutro de Oxigênio possui 8 elétrons, igual ao seu número atômico.",
+      "nivel": "basico",
+      "tag": "estrutura_atomica"
+    },
+    {
+      "id": 13,
+      "enunciado": "Qual é a fórmula química do sal de cozinha?",
+      "alternativas": [
+        "NaCl",
+        "Na2Cl",
+        "NaCl2",
+        "ClNa"
+      ],
+      "resposta": 0,
+      "explicacao": "O sal de cozinha tem fórmula NaCl, formado por um átomo de Sódio e um de Cloro.",
+      "nivel": "basico",
+      "tag": "compostos"
+    },
+    {
+      "id": 14,
+      "enunciado": "O que é uma ligação iônica?",
+      "alternativas": [
+        "Compartilhamento de elétrons",
+        "Transferência de elétrons",
+        "Força de atração fraca",
+        "Ligação entre metais"
+      ],
+      "resposta": 1,
+      "explicacao": "Uma ligação iônica ocorre quando há transferência de elétrons de um átomo para outro, formando íons.",
+      "nivel": "intermediario",
+      "tag": "ligacoes_quimicas"
+    },
+    {
+      "id": 15,
+      "enunciado": "Qual é o pH de uma solução neutra?",
+      "alternativas": [
+        "0",
+        "7",
+        "14",
+        "10"
+      ],
+      "resposta": 1,
+      "explicacao": "Uma solução neutra tem pH igual a 7. Valores abaixo são ácidos e acima são básicos.",
+      "nivel": "basico",
+      "tag": "acidez_basicidade"
+    },
+    {
+      "id": 16,
+      "enunciado": "Qual é o número atômico do Ferro?",
+      "alternativas": [
+        "24",
+        "26",
+        "28",
+        "30"
+      ],
+      "resposta": 1,
+      "explicacao": "O número atômico do Ferro é 26, indicando 26 prótons no núcleo.",
+      "nivel": "basico",
+      "tag": "tabela_periodica"
+    },
+    {
+      "id": 17,
+      "enunciado": "O que é uma reação endotérmica?",
+      "alternativas": [
+        "Libera calor",
+        "Absorve calor",
+        "Não envolve calor",
+        "Mantém temperatura constante"
+      ],
+      "resposta": 1,
+      "explicacao": "Uma reação endotérmica absorve calor do ambiente durante o processo.",
+      "nivel": "intermediario",
+      "tag": "reacoes_quimicas"
+    },
+    {
+      "id": 18,
+      "enunciado": "Qual é a fórmula química do ácido sulfúrico?",
+      "alternativas": [
+        "H2SO3",
+        "H2SO4",
+        "HSO4",
+        "H3SO4"
+      ],
+      "resposta": 1,
+      "explicacao": "O ácido sulfúrico tem fórmula H2SO4, sendo um dos ácidos mais importantes na indústria.",
+      "nivel": "intermediario",
+      "tag": "compostos"
+    },
+    {
+      "id": 19,
+      "enunciado": "O que significa 'mol' em química?",
+      "alternativas": [
+        "Unidade de massa",
+        "Unidade de quantidade de matéria",
+        "Unidade de volume",
+        "Unidade de temperatura"
+      ],
+      "resposta": 1,
+      "explicacao": "Mol é a unidade de quantidade de matéria, equivalente a 6,022 x 10²³ partículas (número de Avogadro).",
+      "nivel": "intermediario",
+      "tag": "conceitos_gerais"
+    },
+    {
+      "id": 20,
+      "enunciado": "Qual é o símbolo químico do Ouro?",
+      "alternativas": [
+        "Or",
+        "Au",
+        "Go",
+        "Ou"
+      ],
+      "resposta": 1,
+      "explicacao": "O símbolo químico do Ouro é 'Au', derivado do latim 'Aurum'.",
+      "nivel": "basico",
+      "tag": "simbolos"
+    },
+    {
+      "id": 21,
+      "enunciado": "O que é um íon?",
+      "alternativas": [
+        "Átomo neutro",
+        "Átomo com carga elétrica",
+        "Molécula simples",
+        "Composto orgânico"
+      ],
+      "resposta": 1,
+      "explicacao": "Um íon é um átomo ou molécula que possui carga elétrica devido à perda ou ganho de elétrons.",
+      "nivel": "basico",
+      "tag": "estrutura_atomica"
+    },
+    {
+      "id": 22,
+      "enunciado": "Qual é a fórmula química do amoníaco?",
+      "alternativas": [
+        "NH2",
+        "NH3",
+        "NH4",
+        "N2H3"
+      ],
+      "resposta": 1,
+      "explicacao": "O amoníaco tem fórmula NH3, formado por um átomo de Nitrogênio e três de Hidrogênio.",
+      "nivel": "basico",
+      "tag": "compostos"
+    },
+    {
+      "id": 23,
+      "enunciado": "O que é uma reação exotérmica?",
+      "alternativas": [
+        "Absorve calor",
+        "Libera calor",
+        "Não envolve calor",
+        "Mantém temperatura constante"
+      ],
+      "resposta": 1,
+      "explicacao": "Uma reação exotérmica libera calor para o ambiente durante o processo.",
+      "nivel": "intermediario",
+      "tag": "reacoes_quimicas"
+    },
+    {
+      "id": 24,
+      "enunciado": "Qual é o número atômico do Nitrogênio?",
+      "alternativas": [
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "resposta": 2,
+      "explicacao": "O número atômico do Nitrogênio é 7, indicando 7 prótons no núcleo.",
+      "nivel": "basico",
+      "tag": "tabela_periodica"
+    },
+    {
+      "id": 25,
+      "enunciado": "O que é um isótopo?",
+      "alternativas": [
+        "Átomos com mesmo número de prótons e diferentes nêutrons",
+        "Átomos com mesmo número de elétrons",
+        "Moléculas idênticas",
+        "Compostos similares"
+      ],
+      "resposta": 0,
+      "explicacao": "Isótopos são átomos do mesmo elemento que possuem o mesmo número de prótons, mas diferentes números de nêutrons.",
+      "nivel": "intermediario",
+      "tag": "estrutura_atomica"
+    },
+    {
+      "id": 26,
+      "enunciado": "Qual é a fórmula química do metano?",
+      "alternativas": [
+        "CH2",
+        "CH3",
+        "CH4",
+        "C2H4"
+      ],
+      "resposta": 2,
+      "explicacao": "O metano tem fórmula CH4, sendo o hidrocarboneto mais simples, formado por um átomo de Carbono e quatro de Hidrogênio.",
+      "nivel": "basico",
+      "tag": "compostos"
+    },
+    {
+      "id": 27,
+      "enunciado": "O que é um ácido de Arrhenius?",
+      "alternativas": [
+        "Substância que doa prótons",
+        "Substância que libera íons H+ em água",
+        "Substância que aceita elétrons",
+        "Substância que libera OH- em água"
+      ],
+      "resposta": 1,
+      "explicacao": "Segundo Arrhenius, um ácido é uma substância que, em solução aquosa, libera íons H+ (prótons).",
+      "nivel": "avancado",
+      "tag": "acidez_basicidade"
+    },
+    {
+      "id": 28,
+      "enunciado": "Qual é o símbolo químico do Potássio?",
+      "alternativas": [
+        "Po",
+        "K",
+        "Pt",
+        "P"
+      ],
+      "resposta": 1,
+      "explicacao": "O símbolo químico do Potássio é 'K', derivado do latim 'Kalium'.",
+      "nivel": "basico",
+      "tag": "simbolos"
+    },
+    {
+      "id": 29,
+      "enunciado": "O que é uma base de Arrhenius?",
+      "alternativas": [
+        "Substância que aceita prótons",
+        "Substância que libera íons OH- em água",
+        "Substância que doa elétrons",
+        "Substância que libera H+ em água"
+      ],
+      "resposta": 1,
+      "explicacao": "Segundo Arrhenius, uma base é uma substância que, em solução aquosa, libera íons OH- (hidróxido).",
+      "nivel": "avancado",
+      "tag": "acidez_basicidade"
+    },
+    {
+      "id": 30,
+      "enunciado": "Qual é a fórmula química do ácido clorídrico?",
+      "alternativas": [
+        "HCl",
+        "H2Cl",
+        "HCl2",
+        "H3Cl"
+      ],
+      "resposta": 0,
+      "explicacao": "O ácido clorídrico tem fórmula HCl, formado por um átomo de Hidrogênio e um de Cloro.",
+      "nivel": "basico",
+      "tag": "compostos"
+    },
+    {
+      "id": 31,
+      "enunciado": "O que é o número de massa?",
+      "alternativas": [
+        "Soma de prótons e elétrons",
+        "Soma de prótons e nêutrons",
+        "Número de elétrons",
+        "Número de prótons"
+      ],
+      "resposta": 1,
+      "explicacao": "O número de massa é a soma do número de prótons e nêutrons no núcleo de um átomo.",
+      "nivel": "intermediario",
+      "tag": "estrutura_atomica"
+    },
+    {
+      "id": 32,
+      "enunciado": "Qual é o número atômico do Cloro?",
+      "alternativas": [
+        "15",
+        "16",
+        "17",
+        "18"
+      ],
+      "resposta": 2,
+      "explicacao": "O número atômico do Cloro é 17, indicando 17 prótons no núcleo.",
+      "nivel": "basico",
+      "tag": "tabela_periodica"
+    },
+    {
+      "id": 33,
+      "enunciado": "O que é uma ligação metálica?",
+      "alternativas": [
+        "Compartilhamento de elétrons",
+        "Transferência de elétrons",
+        "Mar de elétrons deslocalizados",
+        "Força de atração fraca"
+      ],
+      "resposta": 2,
+      "explicacao": "A ligação metálica ocorre quando os elétrons de valência são compartilhados por todos os átomos, formando um 'mar de elétrons'.",
+      "nivel": "avancado",
+      "tag": "ligacoes_quimicas"
+    },
+    {
+      "id": 34,
+      "enunciado": "Qual é a fórmula química do peróxido de hidrogênio?",
+      "alternativas": [
+        "H2O",
+        "H2O2",
+        "HO2",
+        "H3O2"
+      ],
+      "resposta": 1,
+      "explicacao": "O peróxido de hidrogênio (água oxigenada) tem fórmula H2O2, contendo dois átomos de Hidrogênio e dois de Oxigênio.",
+      "nivel": "intermediario",
+      "tag": "compostos"
+    },
+    {
+      "id": 35,
+      "enunciado": "O que é um elemento químico?",
+      "alternativas": [
+        "Substância composta",
+        "Substância formada por átomos com mesmo número atômico",
+        "Mistura de substâncias",
+        "Composto orgânico"
+      ],
+      "resposta": 1,
+      "explicacao": "Um elemento químico é uma substância formada por átomos que possuem o mesmo número atômico (mesmo número de prótons).",
+      "nivel": "basico",
+      "tag": "conceitos_gerais"
+    },
+    {
+      "id": 36,
+      "enunciado": "Qual é o símbolo químico do Mercúrio?",
+      "alternativas": [
+        "Me",
+        "Hg",
+        "Mc",
+        "Mr"
+      ],
+      "resposta": 1,
+      "explicacao": "O símbolo químico do Mercúrio é 'Hg', derivado do latim 'Hydrargyrum'.",
+      "nivel": "basico",
+      "tag": "simbolos"
+    },
+    {
+      "id": 37,
+      "enunciado": "O que é uma solução saturada?",
+      "alternativas": [
+        "Solução com pouco soluto",
+        "Solução que contém a quantidade máxima de soluto possível",
+        "Solução sem soluto",
+        "Solução concentrada"
+      ],
+      "resposta": 1,
+      "explicacao": "Uma solução saturada contém a quantidade máxima de soluto que pode ser dissolvida em uma determinada quantidade de solvente, a uma temperatura específica.",
+      "nivel": "intermediario",
+      "tag": "solucoes"
+    },
+    {
+      "id": 38,
+      "enunciado": "Qual é a fórmula química do gás carbônico?",
+      "alternativas": [
+        "CO",
+        "CO2",
+        "C2O",
+        "CO3"
+      ],
+      "resposta": 1,
+      "explicacao": "O gás carbônico (dióxido de carbono) tem fórmula CO2, formado por um átomo de Carbono e dois de Oxigênio.",
+      "nivel": "basico",
+      "tag": "compostos"
+    },
+    {
+      "id": 39,
+      "enunciado": "O que é um cátion?",
+      "alternativas": [
+        "Íon com carga negativa",
+        "Íon com carga positiva",
+        "Átomo neutro",
+        "Molécula polar"
+      ],
+      "resposta": 1,
+      "explicacao": "Um cátion é um íon com carga positiva, formado quando um átomo perde elétrons.",
+      "nivel": "intermediario",
+      "tag": "estrutura_atomica"
+    },
+    {
+      "id": 40,
+      "enunciado": "Qual é o número atômico do Cálcio?",
+      "alternativas": [
+        "18",
+        "19",
+        "20",
+        "21"
+      ],
+      "resposta": 2,
+      "explicacao": "O número atômico do Cálcio é 20, indicando 20 prótons no núcleo.",
+      "nivel": "basico",
+      "tag": "tabela_periodica"
+    },
+    {
+      "id": 41,
+      "enunciado": "O que é um ânion?",
+      "alternativas": [
+        "Íon com carga positiva",
+        "Íon com carga negativa",
+        "Átomo neutro",
+        "Molécula apolar"
+      ],
+      "resposta": 1,
+      "explicacao": "Um ânion é um íon com carga negativa, formado quando um átomo ganha elétrons.",
+      "nivel": "intermediario",
+      "tag": "estrutura_atomica"
+    },
+    {
+      "id": 42,
+      "enunciado": "Qual é a fórmula química do hidróxido de sódio?",
+      "alternativas": [
+        "NaOH",
+        "Na2OH",
+        "Na(OH)2",
+        "NaO"
+      ],
+      "resposta": 0,
+      "explicacao": "O hidróxido de sódio (soda cáustica) tem fórmula NaOH, formado por Sódio, Oxigênio e Hidrogênio.",
+      "nivel": "intermediario",
+      "tag": "compostos"
+    },
+    {
+      "id": 43,
+      "enunciado": "O que é a Lei de Conservação da Massa?",
+      "alternativas": [
+        "Massa pode ser criada",
+        "Massa pode ser destruída",
+        "Massa total permanece constante em reações",
+        "Massa varia com temperatura"
+      ],
+      "resposta": 2,
+      "explicacao": "A Lei de Conservação da Massa estabelece que a massa total dos reagentes é igual à massa total dos produtos em uma reação química.",
+      "nivel": "intermediario",
+      "tag": "leis_quimicas"
+    },
+    {
+      "id": 44,
+      "enunciado": "Qual é o símbolo químico do Ferro?",
+      "alternativas": [
+        "Fe",
+        "Fr",
+        "F",
+        "Fi"
+      ],
+      "resposta": 0,
+      "explicacao": "O símbolo químico do Ferro é 'Fe', derivado do latim 'Ferrum'.",
+      "nivel": "basico",
+      "tag": "simbolos"
+    },
+    {
+      "id": 45,
+      "enunciado": "O que é uma reação de neutralização?",
+      "alternativas": [
+        "Reação entre dois ácidos",
+        "Reação entre ácido e base formando sal e água",
+        "Reação entre dois metais",
+        "Reação de combustão"
+      ],
+      "resposta": 1,
+      "explicacao": "Uma reação de neutralização ocorre quando um ácido reage com uma base, formando sal e água.",
+      "nivel": "intermediario",
+      "tag": "reacoes_quimicas"
+    },
+    {
+      "id": 46,
+      "enunciado": "Qual é a fórmula química do ácido nítrico?",
+      "alternativas": [
+        "HNO2",
+        "HNO3",
+        "H2NO3",
+        "HN3"
+      ],
+      "resposta": 1,
+      "explicacao": "O ácido nítrico tem fórmula HNO3, formado por Hidrogênio, Nitrogênio e três átomos de Oxigênio.",
+      "nivel": "intermediario",
+      "tag": "compostos"
+    },
+    {
+      "id": 47,
+      "enunciado": "O que é um orbital atômico?",
+      "alternativas": [
+        "Caminho do elétron",
+        "Região do espaço onde há maior probabilidade de encontrar elétron",
+        "Núcleo do átomo",
+        "Camada de valência"
+      ],
+      "resposta": 1,
+      "explicacao": "Um orbital atômico é uma região do espaço ao redor do núcleo onde há maior probabilidade de encontrar um elétron.",
+      "nivel": "avancado",
+      "tag": "estrutura_atomica"
+    },
+    {
+      "id": 48,
+      "enunciado": "Qual é o número atômico do Fósforo?",
+      "alternativas": [
+        "13",
+        "14",
+        "15",
+        "16"
+      ],
+      "resposta": 2,
+      "explicacao": "O número atômico do Fósforo é 15, indicando 15 prótons no núcleo.",
+      "nivel": "basico",
+      "tag": "tabela_periodica"
+    },
+    {
+      "id": 49,
+      "enunciado": "O que é um composto orgânico?",
+      "alternativas": [
+        "Composto sem carbono",
+        "Composto que contém carbono (exceto alguns)",
+        "Composto apenas de metais",
+        "Composto inorgânico"
+      ],
+      "resposta": 1,
+      "explicacao": "Compostos orgânicos são aqueles que contêm carbono, geralmente em combinação com hidrogênio, oxigênio, nitrogênio, etc.",
+      "nivel": "intermediario",
+      "tag": "compostos"
+    },
+    {
+      "id": 50,
+      "enunciado": "Qual é a fórmula química do sulfato de sódio?",
+      "alternativas": [
+        "NaSO4",
+        "Na2SO4",
+        "Na(SO4)2",
+        "NaSO3"
+      ],
+      "resposta": 1,
+      "explicacao": "O sulfato de sódio tem fórmula Na2SO4, formado por dois átomos de Sódio, um de Enxofre e quatro de Oxigênio.",
+      "nivel": "intermediario",
+      "tag": "compostos"
+    }
+  ]
+}
+

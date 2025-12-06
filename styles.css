@@ -1,0 +1,158 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-blue: #1E3A8A;
+    --cobalt-blue: #2563EB;
+    --cyan: #06B6D4;
+    --violet: #8B5CF6;
+    --white: #FFFFFF;
+    --gray-light: #F3F4F6;
+    --gray-medium: #9CA3AF;
+    --gray-dark: #4B5563;
+    --success: #10B981;
+    --error: #EF4444;
+    --warning: #F59E0B;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%);
+    color: var(--white);
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+}
+
+#game-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+#game-container canvas {
+    background-color: transparent !important;
+}
+
+#three-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2; /* Acima do game-container para o texto 3D aparecer */
+    display: block; /* Visível por padrão na tela inicial */
+}
+
+#three-container canvas {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    z-index: 2 !important;
+}
+
+#lab-3d-container {
+    position: fixed !important;
+    top: 240px !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: calc(100% - 240px) !important;
+    z-index: 5 !important;
+    pointer-events: auto !important;
+    overflow: hidden;
+    background-color: #0F172A !important;
+}
+
+#lab-3d-container canvas {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    z-index: 5 !important;
+    pointer-events: auto !important;
+}
+
+/* UI Elements */
+.ui-button {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    padding: 16px 32px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--cobalt-blue) 0%, var(--cyan) 100%);
+    color: var(--white);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.ui-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.5);
+}
+
+.ui-button:active {
+    transform: scale(0.98);
+}
+
+.ui-button.secondary {
+    background: linear-gradient(135deg, var(--violet) 0%, var(--cobalt-blue) 100%);
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+}
+
+.ui-button.secondary:hover {
+    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.5);
+}
+
+/* Fade transitions */
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+.fade-out {
+    animation: fadeOut 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .ui-button {
+        font-size: 16px;
+        padding: 14px 28px;
+    }
+}
+
